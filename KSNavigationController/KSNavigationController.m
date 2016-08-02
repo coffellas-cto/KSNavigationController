@@ -230,8 +230,6 @@
     } else {
         [self.view addSubview:_activeView];
     }
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[subview]-0-|" options:0 metrics:nil views:@{@"subview": _activeView}]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[subview]-0-|" options:0 metrics:nil views:@{@"subview": _activeView}]];
 }
 
 @end
