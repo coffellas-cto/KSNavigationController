@@ -1,5 +1,5 @@
 # KSNavigationController
-UIViewController for macOS
+UIViewController for macOS (Objective-C)
 
 Looking for macOS (OS X) analog of `UINavigationController`? This class mimics UIKit's `UINavigationController` behavior.
 
