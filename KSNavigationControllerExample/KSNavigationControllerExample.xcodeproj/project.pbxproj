@@ -1,0 +1,320 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FAC0F40C1D510385004E05F4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC0F40B1D510385004E05F4 /* AppDelegate.m */; };
+		FAC0F40F1D510385004E05F4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC0F40E1D510385004E05F4 /* main.m */; };
+		FAC0F4111D510385004E05F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAC0F4101D510385004E05F4 /* Assets.xcassets */; };
+		FAC0F41F1D5103AC004E05F4 /* KSNavigationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAC0F41B1D5103AC004E05F4 /* KSNavigationController.xib */; };
+		FAC0F4201D5103AC004E05F4 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC0F41D1D5103AC004E05F4 /* TestViewController.m */; };
+		FAC0F4211D5103AC004E05F4 /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAC0F41E1D5103AC004E05F4 /* TestViewController.xib */; };
+		FAC0F4251D51041B004E05F4 /* KSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC0F4241D51041B004E05F4 /* KSNavigationController.m */; };
+		FAC0F4281D5104BD004E05F4 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAC0F4261D5104BD004E05F4 /* MainMenu.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		FAC0F4071D510385004E05F4 /* KSNavigationControllerExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KSNavigationControllerExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAC0F40A1D510385004E05F4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		FAC0F40B1D510385004E05F4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		FAC0F40E1D510385004E05F4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		FAC0F4101D510385004E05F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FAC0F4151D510385004E05F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAC0F41B1D5103AC004E05F4 /* KSNavigationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KSNavigationController.xib; sourceTree = "<group>"; };
+		FAC0F41C1D5103AC004E05F4 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
+		FAC0F41D1D5103AC004E05F4 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
+		FAC0F41E1D5103AC004E05F4 /* TestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
+		FAC0F4231D51041B004E05F4 /* KSNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSNavigationController.h; sourceTree = "<group>"; };
+		FAC0F4241D51041B004E05F4 /* KSNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSNavigationController.m; sourceTree = "<group>"; };
+		FAC0F4271D5104BD004E05F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FAC0F4041D510385004E05F4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FAC0F3FE1D510385004E05F4 = {
+			isa = PBXGroup;
+			children = (
+				FAC0F4091D510385004E05F4 /* KSNavigationControllerExample */,
+				FAC0F4081D510385004E05F4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FAC0F4081D510385004E05F4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FAC0F4071D510385004E05F4 /* KSNavigationControllerExample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FAC0F4091D510385004E05F4 /* KSNavigationControllerExample */ = {
+			isa = PBXGroup;
+			children = (
+				FAC0F4221D51041B004E05F4 /* KSNavigationController */,
+				FAC0F41B1D5103AC004E05F4 /* KSNavigationController.xib */,
+				FAC0F41C1D5103AC004E05F4 /* TestViewController.h */,
+				FAC0F41D1D5103AC004E05F4 /* TestViewController.m */,
+				FAC0F41E1D5103AC004E05F4 /* TestViewController.xib */,
+				FAC0F40A1D510385004E05F4 /* AppDelegate.h */,
+				FAC0F40B1D510385004E05F4 /* AppDelegate.m */,
+				FAC0F4101D510385004E05F4 /* Assets.xcassets */,
+				FAC0F4151D510385004E05F4 /* Info.plist */,
+				FAC0F4261D5104BD004E05F4 /* MainMenu.xib */,
+				FAC0F40D1D510385004E05F4 /* Supporting Files */,
+			);
+			path = KSNavigationControllerExample;
+			sourceTree = "<group>";
+		};
+		FAC0F40D1D510385004E05F4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FAC0F40E1D510385004E05F4 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FAC0F4221D51041B004E05F4 /* KSNavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				FAC0F4231D51041B004E05F4 /* KSNavigationController.h */,
+				FAC0F4241D51041B004E05F4 /* KSNavigationController.m */,
+			);
+			name = KSNavigationController;
+			path = ../../KSNavigationController;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FAC0F4061D510385004E05F4 /* KSNavigationControllerExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FAC0F4181D510385004E05F4 /* Build configuration list for PBXNativeTarget "KSNavigationControllerExample" */;
+			buildPhases = (
+				FAC0F4031D510385004E05F4 /* Sources */,
+				FAC0F4041D510385004E05F4 /* Frameworks */,
+				FAC0F4051D510385004E05F4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KSNavigationControllerExample;
+			productName = KSNavigationControllerExample;
+			productReference = FAC0F4071D510385004E05F4 /* KSNavigationControllerExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FAC0F3FF1D510385004E05F4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = Alex;
+				TargetAttributes = {
+					FAC0F4061D510385004E05F4 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+				};
+			};
+			buildConfigurationList = FAC0F4021D510385004E05F4 /* Build configuration list for PBXProject "KSNavigationControllerExample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FAC0F3FE1D510385004E05F4;
+			productRefGroup = FAC0F4081D510385004E05F4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FAC0F4061D510385004E05F4 /* KSNavigationControllerExample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FAC0F4051D510385004E05F4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAC0F4111D510385004E05F4 /* Assets.xcassets in Resources */,
+				FAC0F41F1D5103AC004E05F4 /* KSNavigationController.xib in Resources */,
+				FAC0F4211D5103AC004E05F4 /* TestViewController.xib in Resources */,
+				FAC0F4281D5104BD004E05F4 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FAC0F4031D510385004E05F4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAC0F4201D5103AC004E05F4 /* TestViewController.m in Sources */,
+				FAC0F4251D51041B004E05F4 /* KSNavigationController.m in Sources */,
+				FAC0F40F1D510385004E05F4 /* main.m in Sources */,
+				FAC0F40C1D510385004E05F4 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		FAC0F4261D5104BD004E05F4 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FAC0F4271D5104BD004E05F4 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FAC0F4161D510385004E05F4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		FAC0F4171D510385004E05F4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		FAC0F4191D510385004E05F4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = KSNavigationControllerExample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Alex.KSNavigationControllerExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		FAC0F41A1D510385004E05F4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = KSNavigationControllerExample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Alex.KSNavigationControllerExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FAC0F4021D510385004E05F4 /* Build configuration list for PBXProject "KSNavigationControllerExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAC0F4161D510385004E05F4 /* Debug */,
+				FAC0F4171D510385004E05F4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FAC0F4181D510385004E05F4 /* Build configuration list for PBXNativeTarget "KSNavigationControllerExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAC0F4191D510385004E05F4 /* Debug */,
+				FAC0F41A1D510385004E05F4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FAC0F3FF1D510385004E05F4 /* Project object */;
+}
