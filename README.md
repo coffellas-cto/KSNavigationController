@@ -12,6 +12,7 @@ Looking for macOS (Mac OS X) analog of UIKit's `UINavigationController` from iOS
 ```objc
 TestViewController *vc1 = [[TestViewController alloc] init];
 KSNavigationController *navVC = [[KSNavigationController alloc] initWithRootViewController:vc1];
+navVC.view.frame = NSMakeRect(0.0, 0.0, 480.0, 272.0); // Or use constraints if appropriate
 self.window.contentViewController = navVC;
 [self.window orderFrontRegardless];
 ```
