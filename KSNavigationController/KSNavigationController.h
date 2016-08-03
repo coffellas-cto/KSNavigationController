@@ -48,7 +48,6 @@
 /**
  @brief This class mimics UIKit's `UINavigationController` behavior.
  @description Navigation bar is not implemented. All methods must be called from main thread.
- @attention You have to create a XIB file for this class or subclass it and create XIBs for each of your subclass. macOS `NSViewController` has `initWithNibName:bundle:` designated initializer, so you must have a XIB file in order for it to work properly.
  */
 NS_CLASS_AVAILABLE(10_5, NA)
 @interface KSNavigationController : NSViewController

@@ -103,6 +103,7 @@
     _KSStack *_stack;
     NSViewController<KSNavigationControllerCompatible> *_rootViewController;
     NSView *_activeView;
+    dispatch_once_t _addRootViewOnceToken;
 }
 
 @property (nonatomic, readonly) CATransition *transition;
@@ -130,14 +131,24 @@
     return self;
 }
 
+- (void)loadView {
+    self.view = [NSView new];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.wantsLayer = YES;
+}
+
+- (void)viewWillAppear {
+    [super viewWillAppear];
     
-    if (_rootViewController) {
-        _activeView = _rootViewController.view;
-        [self addActiveViewAnimated:NO subtype:nil];
-    }
+    dispatch_once(&_addRootViewOnceToken, ^{
+        if (_rootViewController) {
+            _activeView = _rootViewController.view;
+            [self addActiveViewAnimated:NO subtype:nil];
+        }
+    });
 }
 
 #pragma mark - Accessors

@@ -10,7 +10,6 @@
 		FAC0F40C1D510385004E05F4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC0F40B1D510385004E05F4 /* AppDelegate.m */; };
 		FAC0F40F1D510385004E05F4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC0F40E1D510385004E05F4 /* main.m */; };
 		FAC0F4111D510385004E05F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAC0F4101D510385004E05F4 /* Assets.xcassets */; };
-		FAC0F41F1D5103AC004E05F4 /* KSNavigationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAC0F41B1D5103AC004E05F4 /* KSNavigationController.xib */; };
 		FAC0F4201D5103AC004E05F4 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC0F41D1D5103AC004E05F4 /* TestViewController.m */; };
 		FAC0F4211D5103AC004E05F4 /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAC0F41E1D5103AC004E05F4 /* TestViewController.xib */; };
 		FAC0F4251D51041B004E05F4 /* KSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC0F4241D51041B004E05F4 /* KSNavigationController.m */; };
@@ -24,7 +23,6 @@
 		FAC0F40E1D510385004E05F4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FAC0F4101D510385004E05F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FAC0F4151D510385004E05F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FAC0F41B1D5103AC004E05F4 /* KSNavigationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KSNavigationController.xib; sourceTree = "<group>"; };
 		FAC0F41C1D5103AC004E05F4 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		FAC0F41D1D5103AC004E05F4 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		FAC0F41E1D5103AC004E05F4 /* TestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
@@ -64,7 +62,6 @@
 			isa = PBXGroup;
 			children = (
 				FAC0F4221D51041B004E05F4 /* KSNavigationController */,
-				FAC0F41B1D5103AC004E05F4 /* KSNavigationController.xib */,
 				FAC0F41C1D5103AC004E05F4 /* TestViewController.h */,
 				FAC0F41D1D5103AC004E05F4 /* TestViewController.m */,
 				FAC0F41E1D5103AC004E05F4 /* TestViewController.xib */,
@@ -154,7 +151,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAC0F4111D510385004E05F4 /* Assets.xcassets in Resources */,
-				FAC0F41F1D5103AC004E05F4 /* KSNavigationController.xib in Resources */,
 				FAC0F4211D5103AC004E05F4 /* TestViewController.xib in Resources */,
 				FAC0F4281D5104BD004E05F4 /* MainMenu.xib in Resources */,
 			);
