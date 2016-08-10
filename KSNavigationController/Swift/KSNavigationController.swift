@@ -106,9 +106,15 @@ protocol KSNavigationControllerCompatible {
 class KSNavigationController: NSViewController {
     // MARK: Properties
     
-    var viewControllers: [NSViewController]? {
+    var viewControllers: [NSViewController] {
         get {
-            return nil
+            var retVal = [NSViewController]()
+            self._stack.iterate { (object: NSViewController) -> (Void) in
+                retVal.append(object)
+            }
+            
+            retVal.append(self._rootViewController)
+            return retVal
         }
     }
     
