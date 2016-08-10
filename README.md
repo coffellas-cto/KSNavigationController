@@ -1,5 +1,5 @@
 # KSNavigationController
-UIViewController for macOS (Objective-C)
+UINavigationController for macOS (Objective-C)
 
 ![ksnavigationcontrollerdemo](https://cloud.githubusercontent.com/assets/3193877/17337372/04002c08-58eb-11e6-9c1f-2cabdea4dd66.gif)
 
