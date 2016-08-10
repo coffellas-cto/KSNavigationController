@@ -39,7 +39,60 @@ import Cocoa
 // MARK: Stack
 // TODO: Implement
 
-class _KSStack: NSObject {
+class _KSStackItem<T> : NSObject {
+    var value: T
+    var next: _KSStackItem<T>?
+    init(_ value: T) {
+        self.value = value
+    }
+}
+
+class _KSStack<T>: NSObject {
+    private var _head: _KSStackItem<T>?
+    private var _count: UInt = 0
+    var headValue: T? {
+        get {
+            return self._head?.value
+        }
+    }
+    var count: UInt {
+        get {
+            return self._count
+        }
+    }
+    
+    func push(object: T) -> Void {
+        let item = _KSStackItem(object)
+        item.next = self._head
+        self._head = item
+        self._count += 1
+    }
+    
+    func pop() -> T? {
+        guard self._head != nil else {
+            NSException(name: NSInternalInconsistencyException, reason: "Popped an empty stack", userInfo: nil).raise()
+            return nil
+        }
+        
+        let retVal = self._head?.value
+        self._head = self._head?.next
+        self._count -= 1
+        return retVal
+    }
+    
+    func iterate(block: (T) -> (Void)) -> Void {
+        var item = self._head
+        while true {
+            if let item = item {
+                block(item.value)
+            } else {
+                break
+            }
+            
+            item = item?.next
+        }
+    }
+
 }
 
 // MARK: KSNavigationControllerCompatible
@@ -53,7 +106,7 @@ protocol KSNavigationControllerCompatible {
 class KSNavigationController: NSViewController {
     // MARK: Properties
     
-    var viewControllers: [KSNavigationControllerCompatible]? {
+    var viewControllers: [NSViewController]? {
         get {
             return nil
         }
@@ -71,22 +124,30 @@ class KSNavigationController: NSViewController {
         }
     }
     
-    var rootViewController: NSViewController? {
+    var rootViewController: NSViewController {
         get {
-            return _rootViewController
+            return self._rootViewController
         }
     }
 
-    private var _rootViewController: NSViewController?
+    private var _rootViewController: NSViewController
     private var _activeView: NSView?
     private var _addRootViewOnceToken: dispatch_once_t = 0
-    private var _stack: _KSStack = _KSStack()
+    private var _stack: _KSStack<NSViewController> = _KSStack<NSViewController>()
+    private var _transition: CATransition {
+        get {
+            let transition = CATransition()
+            transition.type = kCATransitionPush
+            self.view.animations = ["subviews": transition]
+            return transition
+        }
+    }
     
     // MARK: Life Cycle
     
     init?(rootViewController: NSViewController) {
-        super.init(nibName: nil, bundle: nil)
         self._rootViewController = rootViewController
+        super.init(nibName: nil, bundle: nil)
         if var rootViewController = rootViewController as? KSNavigationControllerCompatible {
             rootViewController.navigationController = self
         } else {
@@ -96,6 +157,7 @@ class KSNavigationController: NSViewController {
     }
     
     required init?(coder: NSCoder) {
+        self._rootViewController = NSViewController()
         super.init(coder: coder)
     }
     
@@ -107,7 +169,7 @@ class KSNavigationController: NSViewController {
     override func viewWillAppear() {
         super.viewWillAppear()
         dispatch_once(&self._addRootViewOnceToken) {
-            self._activeView = self._rootViewController?.view
+            self._activeView = self._rootViewController.view
             self.addActiveViewAnimated(false, subtype: nil)
         }
     }
@@ -121,6 +183,11 @@ class KSNavigationController: NSViewController {
     // MARK: Private Methods
     
     func addActiveViewAnimated(animated: Bool, subtype: String?) -> Void {
+        if animated {
+            self._transition.subtype = subtype
+            self.view.animator().addSubview(self._activeView!)
+        } else {
+            self.view.addSubview(self._activeView!)
+        }
     }
-    
 }

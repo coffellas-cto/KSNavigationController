@@ -10,11 +10,19 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-
-    @IBOutlet weak var window: NSWindow!
+    var window: NSWindow!
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Insert code here to initialize your application
+        self.window = NSWindow()
+        self.window.center()
+        
+        let vc1 = TestViewController()
+        let navigationController = KSNavigationController(rootViewController: vc1)
+        navigationController?.view.frame = NSMakeRect(0.0, 0.0, 480.0, 272.0)
+        
+        self.window.contentViewController = navigationController
+        self.window.orderFrontRegardless()
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {
