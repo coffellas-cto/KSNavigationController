@@ -35,7 +35,7 @@ Here your `TestViewController` class is a subclass of `NSViewController`. It als
 Now, inside your `NSViewController` you can access `navigationController` property (just like in iOS) and push any new view controller on top of navigation stack:
 ```swift
 // Swift
-- (IBAction)pushAction:(id)sender {
+@IBAction func pushAction(sender: AnyObject) {
     self.navigationController?.pushViewController(TestViewController(), animated: true)
 }
 ```
