@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>KSNavigationController by coffellas-cto</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">KSNavigationController</h1>
+      <h2 class="project-tagline">UINavigationController for macOS (Swift, Objective-C)</h2>
+      <a href="https://github.com/coffellas-cto/KSNavigationController" class="btn">View on GitHub</a>
+      <a href="https://github.com/coffellas-cto/KSNavigationController/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/coffellas-cto/KSNavigationController/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="ksnavigationcontroller" class="anchor" href="#ksnavigationcontroller" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>KSNavigationController</h1>
+
+<p>UINavigationController for macOS (Swift, Objective-C)</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/3193877/17337372/04002c08-58eb-11e6-9c1f-2cabdea4dd66.gif" alt="ksnavigationcontrollerdemo"></p>
+
+<p>Looking for macOS (Mac OS X) analog of UIKit's <code>UINavigationController</code> from iOS? This class mimics its behavior.</p>
+
+<p><strong>Attention</strong>: Navigation bar is not implemented. All methods must be called from main thread.</p>
+
+<p>Swift version (2.2): <a href="https://github.com/coffellas-cto/KSNavigationController/tree/master/KSNavigationController/Swift">KSNavigationController/Swift</a></p>
+
+<p>ObjC version: <a href="https://github.com/coffellas-cto/KSNavigationController/tree/master/KSNavigationController/ObjectiveC">KSNavigationController/ObjectiveC</a></p>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h2>
+
+<h3>
+<a id="creating-a-navigation-controller" class="anchor" href="#creating-a-navigation-controller" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Creating a navigation controller</h3>
+
+<div class="highlight highlight-source-swift"><pre><span class="pl-c">// Swift</span>
+<span class="pl-k">let</span> vc1 <span class="pl-k">=</span> TestViewController()
+<span class="pl-k">let</span> navVC <span class="pl-k">=</span> KSNavigationController(rootViewController: vc1)
+navVC?<span class="pl-k">.</span>view<span class="pl-k">.</span>frame <span class="pl-k">=</span> NSMakeRect(<span class="pl-c1">0</span><span class="pl-k">.</span><span class="pl-c1">0</span>, <span class="pl-c1">0</span><span class="pl-k">.</span><span class="pl-c1">0</span>, <span class="pl-c1">480</span><span class="pl-k">.</span><span class="pl-c1">0</span>, <span class="pl-c1">272</span><span class="pl-k">.</span><span class="pl-c1">0</span>) <span class="pl-c">// Or use constraints if appropriate</span>
+<span class="pl-k">self</span><span class="pl-k">.</span>window<span class="pl-k">.</span>contentViewController <span class="pl-k">=</span> navVC
+<span class="pl-k">self</span><span class="pl-k">.</span>window<span class="pl-k">.</span>orderFrontRegardless()</pre></div>
+
+<div class="highlight highlight-source-objc"><pre><span class="pl-c">// ObjC</span>
+TestViewController *vc1 = [[TestViewController <span class="pl-c1">alloc</span>] <span class="pl-c1">init</span>];
+KSNavigationController *navVC = [[KSNavigationController <span class="pl-c1">alloc</span>] <span class="pl-c1">initWithRootViewController:</span>vc1];
+navVC.view.frame = <span class="pl-c1">NSMakeRect</span>(<span class="pl-c1">0.0</span>, <span class="pl-c1">0.0</span>, <span class="pl-c1">480.0</span>, <span class="pl-c1">272.0</span>); <span class="pl-c">// Or use constraints if appropriate</span>
+self.window.contentViewController = navVC;
+[<span class="pl-v">self</span>.window <span class="pl-c1">orderFrontRegardless</span>];</pre></div>
+
+<p>Here your <code>TestViewController</code> class is a subclass of <code>NSViewController</code>. It also has to conform to <code>KSNavigationControllerCompatible</code> protocol in order to have access to <code>navigationController</code> property.</p>
+
+<h3>
+<a id="pushing-and-popping-view-controllers-onto--from-stack" class="anchor" href="#pushing-and-popping-view-controllers-onto--from-stack" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Pushing and popping view controllers onto / from stack</h3>
+
+<p>Now, inside your <code>NSViewController</code> you can access <code>navigationController</code> property (just like in iOS) and push any new view controller on top of navigation stack:</p>
+
+<div class="highlight highlight-source-swift"><pre><span class="pl-c">// Swift</span>
+<span class="pl-k">@IBAction</span> <span class="pl-k">func</span> <span class="pl-en">pushAction</span>(sender: <span class="pl-c1">AnyObject</span>) {
+    <span class="pl-k">self</span><span class="pl-k">.</span>navigationController?<span class="pl-k">.</span>pushViewController(TestViewController(), animated: <span class="pl-c1">true</span>)
+}</pre></div>
+
+<div class="highlight highlight-source-objc"><pre><span class="pl-c">// ObjC</span>
+- (<span class="pl-k">IBAction</span>)pushAction:(<span class="pl-k">id</span>)sender {
+    [<span class="pl-v">self</span>.navigationController <span class="pl-c1">pushViewController:</span>[[TestViewController <span class="pl-c1">alloc</span>] <span class="pl-c1">init</span>] <span class="pl-c1">animated:</span><span class="pl-c1">YES</span>];
+}</pre></div>
+
+<p>Do the following to pop the top view controller from stack:</p>
+
+<div class="highlight highlight-source-swift"><pre><span class="pl-c">// Swift</span>
+<span class="pl-k">self</span><span class="pl-k">.</span>navigationController?<span class="pl-k">.</span>popViewControllerAnimated(<span class="pl-c1">true</span>)</pre></div>
+
+<div class="highlight highlight-source-objc"><pre><span class="pl-c">// ObjC</span>
+[<span class="pl-v">self</span>.navigationController <span class="pl-c1">popViewControllerAnimated:</span><span class="pl-c1">YES</span>];</pre></div>
+
+<h2>
+<a id="ksnavigationcontrollercompatible-protocol" class="anchor" href="#ksnavigationcontrollercompatible-protocol" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>KSNavigationControllerCompatible protocol</h2>
+
+<p>Conform to this protocol if you want your <code>NSViewController</code> subclass to work with <code>KSNavigationController</code>.</p>
+
+<p>This protocol has only one property:</p>
+
+<div class="highlight highlight-source-swift"><pre><span class="pl-c">/*Swift*/</span> <span class="pl-k">weak</span> <span class="pl-k">var</span> navigationController: KSNavigationController? {<span class="pl-k">get</span> <span class="pl-k">set</span>}</pre></div>
+
+<div class="highlight highlight-source-objc"><pre><span class="pl-c">/*ObjC*/</span> @property (weak, nonatomic) KSNavigationController *navigationController;</pre></div>
+
+<p><strong>Warning:</strong> Do not set this properly by yourself.</p>
+
+<p><strong>Objective-C only:</strong>
+You must synthesize <code>navigationController</code> property explicitly in your subclass implementation:</p>
+
+<div class="highlight highlight-source-objc"><pre>@synthesize navigationController = _navigationController;</pre></div>
+
+<p>See example projects for more understanding.</p>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h2>
+
+<p>Published under MIT license.</p>
+
+<p>Copyright (c) 2016 A. Gordiyenko.</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/coffellas-cto/KSNavigationController">KSNavigationController</a> is maintained by <a href="https://github.com/coffellas-cto">coffellas-cto</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
