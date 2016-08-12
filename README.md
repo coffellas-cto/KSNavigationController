@@ -1,5 +1,5 @@
 # KSNavigationController
-UINavigationController for macOS (Objective-C)
+UINavigationController for macOS (Swift, Objective-C)
 
 ![ksnavigationcontrollerdemo](https://cloud.githubusercontent.com/assets/3193877/17337372/04002c08-58eb-11e6-9c1f-2cabdea4dd66.gif)
 
@@ -7,9 +7,23 @@ Looking for macOS (Mac OS X) analog of UIKit's `UINavigationController` from iOS
 
 **Attention**: Navigation bar is not implemented. All methods must be called from main thread.
 
+Swift version (2.2): [KSNavigationController/Swift](https://github.com/coffellas-cto/KSNavigationController/tree/master/KSNavigationController/Swift)
+
+ObjC version: [KSNavigationController/ObjectiveC](https://github.com/coffellas-cto/KSNavigationController/tree/master/KSNavigationController/ObjectiveC)
+
 ## Usage
 ### Creating a navigation controller
+```swift
+// Swift
+let vc1 = TestViewController()
+let navigationController = KSNavigationController(rootViewController: vc1)
+navigationController?.view.frame = NSMakeRect(0.0, 0.0, 480.0, 272.0) // Or use constraints if appropriate
+self.window.contentViewController = navigationController
+self.window.orderFrontRegardless()
+```
+
 ```objc
+// ObjC
 TestViewController *vc1 = [[TestViewController alloc] init];
 KSNavigationController *navVC = [[KSNavigationController alloc] initWithRootViewController:vc1];
 navVC.view.frame = NSMakeRect(0.0, 0.0, 480.0, 272.0); // Or use constraints if appropriate
@@ -19,33 +33,49 @@ self.window.contentViewController = navVC;
 Here your `TestViewController` class is a subclass of `NSViewController`. It also has to conform to `KSNavigationControllerCompatible` protocol in order to have access to `navigationController` property.
 ### Pushing and popping view controllers onto / from stack
 Now, inside your `NSViewController` you can access `navigationController` property (just like in iOS) and push any new view controller on top of navigation stack:
-```objc
-- (IBAction)pushaction:(id)sender {
-    TestViewController *testVC = [[TestViewController alloc] init];
-    [self.navigationController pushViewController:testVC animated:YES];
+```swift
+// Swift
+- (IBAction)pushAction:(id)sender {
+    self.navigationController?.pushViewController(TestViewController(), animated: true)
 }
 ```
 
-Do the following to pop the top controller from stack:
 ```objc
-- (IBAction)popaction:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+// ObjC
+- (IBAction)pushAction:(id)sender {
+    [self.navigationController pushViewController:[[TestViewController alloc] init] animated:YES];
 }
+```
+
+Do the following to pop the top view controller from stack:
+```swift
+// Swift
+self.navigationController?.popViewControllerAnimated(true)
+```
+
+```objc
+// ObjC
+[self.navigationController popViewControllerAnimated:YES];
 ```
 
 ## KSNavigationControllerCompatible protocol
 Conform to this protocol if you want your `NSViewController` subclass to work with `KSNavigationController`.
 
 This protocol has only one property:
+```swift
+/*Swift*/ weak var navigationController: KSNavigationController? {get set}
+```
 
 ```objc
-@property (weak, nonatomic) KSNavigationController *navigationController;
+/*ObjC*/ @property (weak, nonatomic) KSNavigationController *navigationController;
 ```
 
 **Warning:** Do not set this properly by yourself.
+
+**Objective-C only:**
 You must synthesize `navigationController` property explicitly in your subclass implementation:
 ```objc
 @synthesize navigationController = _navigationController;
 ```
 
-See example project for more understanding.
+See example projects for more understanding.
