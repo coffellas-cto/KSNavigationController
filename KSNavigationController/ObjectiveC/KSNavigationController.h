@@ -52,7 +52,7 @@
 NS_CLASS_AVAILABLE(10_5, NA)
 @interface KSNavigationController : NSViewController
 
-/** The current view controller stack */
+/** The current view controller stack. */
 @property (nonatomic, readonly) NSArray<__kindof NSViewController<KSNavigationControllerCompatible> *> *viewControllers;
 /** Number of view controllers currently in stack. */
 @property (nonatomic, readonly) NSUInteger viewControllersCount;
@@ -77,7 +77,7 @@ NS_CLASS_AVAILABLE(10_5, NA)
 /**
  Pops the top view controller from the navigation stack and updates the display.
  @param animated Set this value to YES to animate the transition, NO otherwise.
- @return The popped controller.
+ @return The popped view controller.
  */
 - (NSViewController<KSNavigationControllerCompatible> *)popViewControllerAnimated:(BOOL)animated;
 /**

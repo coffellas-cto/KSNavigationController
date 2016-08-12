@@ -90,17 +90,34 @@ class _KSStack<T>: NSObject {
 
 // MARK: KSNavigationControllerCompatible
 
+/**
+ Protocol your `NSViewController` subclass must conform to.
+ 
+ Conform to this protocol if you want your `NSViewController` subclass to work with `KSNavigationController`.
+ */
 protocol KSNavigationControllerCompatible {
+    /**
+     Navigation controller object which holds your `NSViewController` subclass.
+     
+     Warning: Do not set this properly by yourself.
+     */
     weak var navigationController: KSNavigationController? {get set}
 }
 
 // MARK: KSNavigationController
 
+/**
+ This class mimics UIKit's `UINavigationController` behavior.
+ 
+ Navigation bar is not implemented. All methods must be called from main thread.
+ */
 class KSNavigationController: NSViewController {
     // MARK: Properties
     
+    /** The root view controller on the bottom of the stack. */
     private(set) var rootViewController: NSViewController
     
+    /** The current view controller stack. */
     var viewControllers: [NSViewController] {
         get {
             var retVal = [NSViewController]()
@@ -113,12 +130,14 @@ class KSNavigationController: NSViewController {
         }
     }
     
+    /** Number of view controllers currently in stack. */
     var viewControllersCount: UInt {
         get {
             return self._stack.count + 1
         }
     }
     
+    /** The top view controller on the stack. */
     var topViewController: NSViewController? {
         get {
             if self._stack.count > 0 {
@@ -143,6 +162,12 @@ class KSNavigationController: NSViewController {
     
     // MARK: Life Cycle
     
+    /**
+     Initializes and returns a newly created navigation controller.
+     This method throws exception if `rootViewController` doesn't conform to `KSNavigationControllerCompatible` protocol.
+     - parameter rootViewController: The view controller that resides at the bottom of the navigation stack.
+     - returns: The initialized navigation controller object or nil if there was a problem initializing the object.
+     */
     init?(rootViewController: NSViewController) {
         self.rootViewController = rootViewController
         super.init(nibName: nil, bundle: nil)
@@ -178,6 +203,11 @@ class KSNavigationController: NSViewController {
     
     // MARK: Public Methods
     
+    /**
+     Pushes a view controller onto the receiver’s stack and updates the display. Uses a horizontal slide transition.
+     - parameter viewController: The view controller to push onto the stack.
+     - parameter animated: Set this value to YES to animate the transition, NO otherwise.
+     */
     func pushViewController(viewController: NSViewController, animated: Bool) {
         self._activeView?.removeFromSuperview()
         self._stack.push(viewController)
@@ -189,6 +219,11 @@ class KSNavigationController: NSViewController {
         self.addActiveViewAnimated(animated, subtype: kCATransitionFromRight)
     }
     
+    /**
+     Pops the top view controller from the navigation stack and updates the display.
+     - parameter animated: Set this value to YES to animate the transition, NO otherwise.
+     - returns: The popped view controller.
+     */
     func popViewControllerAnimated(animated: Bool) -> NSViewController? {
         if self._stack.count == 0 {
             return nil
@@ -205,6 +240,11 @@ class KSNavigationController: NSViewController {
         return retVal
     }
     
+    /**
+     Pops until there's only a single view controller left on the stack. Returns the popped view controllers.
+     - parameter animated: Set this value to YES to animate the transitions if any, NO otherwise.
+     - returns: The popped view controllers.
+     */
     func popToRootViewControllerAnimated(animated: Bool) -> [NSViewController]? {
         if self._stack.count == 0 {
             return nil;
@@ -222,7 +262,7 @@ class KSNavigationController: NSViewController {
     
     // MARK: Private Methods
     
-    func addActiveViewAnimated(animated: Bool, subtype: String?) {
+    private func addActiveViewAnimated(animated: Bool, subtype: String?) {
         if animated {
             self._transition.subtype = subtype
             self.view.animator().addSubview(self._activeView!)
