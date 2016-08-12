@@ -1,43 +1,36 @@
 //
-//  KSNavigationController.swift
-//  KSNavigationControllerExampleSwift
+//  KSNavigationController.m
 //
-//  Created by Alex on 8/4/16.
-//  Copyright © 2016 Alex. All rights reserved.
+//  Copyright © 2016 Alex Gordiyenko. All rights reserved.
 //
+
+/*
+ The MIT License (MIT)
+ 
+ Copyright (c) 2016 A. Gordiyenko
+ 
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+ 
+ The above copyright notice and this permission notice shall be included in all
+ copies or substantial portions of the Software.
+ 
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ SOFTWARE.
+ */
 
 import Cocoa
 
-/*
-/**
- @brief Initializes and returns a newly created navigation controller.
- @description This method throws exception if `rootViewController` is nil.
- @param rootViewController The view controller that resides at the bottom of the navigation stack.
- @return The initialized navigation controller object or nil if there was a problem initializing the object.
- */
-- (instancetype)initWithRootViewController:(NSViewController<KSNavigationControllerCompatible> *)rootViewController;
-/**
- Pushes a view controller onto the receiver’s stack and updates the display. Uses a horizontal slide transition.
- @param viewController The view controller to push onto the stack.
- @param animated Set this value to YES to animate the transition, NO otherwise.
- */
-- (void)pushViewController:(NSViewController<KSNavigationControllerCompatible> *)viewController animated:(BOOL)animated;
-/**
- Pops the top view controller from the navigation stack and updates the display.
- @param animated Set this value to YES to animate the transition, NO otherwise.
- @return The popped controller.
- */
-- (NSViewController<KSNavigationControllerCompatible> *)popViewControllerAnimated:(BOOL)animated;
-/**
- Pops until there's only a single view controller left on the stack. Returns the popped view controllers.
- @param animated Set this value to YES to animate the transitions if any, NO otherwise.
- @return The popped view controllers.
- */
-- (NSArray<__kindof NSViewController<KSNavigationControllerCompatible> *> *)popToRootViewControllerAnimated:(BOOL)animated;
-*/
-
 // MARK: Stack
-// TODO: Implement
 
 class _KSStackItem<T> : NSObject {
     var value: T
@@ -106,6 +99,8 @@ protocol KSNavigationControllerCompatible {
 class KSNavigationController: NSViewController {
     // MARK: Properties
     
+    private(set) var rootViewController: NSViewController
+    
     var viewControllers: [NSViewController] {
         get {
             var retVal = [NSViewController]()
@@ -113,30 +108,27 @@ class KSNavigationController: NSViewController {
                 retVal.append(object)
             }
             
-            retVal.append(self._rootViewController)
+            retVal.append(self.rootViewController)
             return retVal
         }
     }
     
     var viewControllersCount: UInt {
         get {
-            return 0
+            return self._stack.count + 1
         }
     }
     
     var topViewController: NSViewController? {
         get {
-            return nil
-        }
-    }
-    
-    var rootViewController: NSViewController {
-        get {
-            return self._rootViewController
+            if self._stack.count > 0 {
+                return self._stack.headValue;
+            }
+            
+            return self.rootViewController;
         }
     }
 
-    private var _rootViewController: NSViewController
     private var _activeView: NSView?
     private var _addRootViewOnceToken: dispatch_once_t = 0
     private var _stack: _KSStack<NSViewController> = _KSStack<NSViewController>()
@@ -152,7 +144,7 @@ class KSNavigationController: NSViewController {
     // MARK: Life Cycle
     
     init?(rootViewController: NSViewController) {
-        self._rootViewController = rootViewController
+        self.rootViewController = rootViewController
         super.init(nibName: nil, bundle: nil)
         if var rootViewController = rootViewController as? KSNavigationControllerCompatible {
             rootViewController.navigationController = self
@@ -163,7 +155,7 @@ class KSNavigationController: NSViewController {
     }
     
     required init?(coder: NSCoder) {
-        self._rootViewController = NSViewController()
+        self.rootViewController = NSViewController()
         super.init(coder: coder)
     }
     
@@ -175,7 +167,7 @@ class KSNavigationController: NSViewController {
     override func viewWillAppear() {
         super.viewWillAppear()
         dispatch_once(&self._addRootViewOnceToken) {
-            self._activeView = self._rootViewController.view
+            self._activeView = self.rootViewController.view
             self.addActiveViewAnimated(false, subtype: nil)
         }
     }
@@ -186,9 +178,51 @@ class KSNavigationController: NSViewController {
     
     // MARK: Public Methods
     
+    func pushViewController(viewController: NSViewController, animated: Bool) {
+        self._activeView?.removeFromSuperview()
+        self._stack.push(viewController)
+        if var viewControllerWithNav = viewController as? KSNavigationControllerCompatible {
+            viewControllerWithNav.navigationController = self
+        }
+        
+        self._activeView = viewController.view
+        self.addActiveViewAnimated(animated, subtype: kCATransitionFromRight)
+    }
+    
+    func popViewControllerAnimated(animated: Bool) -> NSViewController? {
+        if self._stack.count == 0 {
+            return nil
+        }
+        
+        self._activeView?.removeFromSuperview()
+        let retVal = self._stack.pop()
+        self._activeView = self._stack.headValue?.view
+        if self._activeView == nil {
+            self._activeView = self.rootViewController.view
+        }
+        
+        self.addActiveViewAnimated(animated, subtype: kCATransitionFromLeft)
+        return retVal
+    }
+    
+    func popToRootViewControllerAnimated(animated: Bool) -> [NSViewController]? {
+        if self._stack.count == 0 {
+            return nil;
+        }
+        
+        var retVal = [NSViewController]()
+        for _ in 1...self._stack.count {
+            if let vc = self.popViewControllerAnimated(animated) {
+                retVal.append(vc)
+            }
+        }
+        
+        return retVal
+    }
+    
     // MARK: Private Methods
     
-    func addActiveViewAnimated(animated: Bool, subtype: String?) -> Void {
+    func addActiveViewAnimated(animated: Bool, subtype: String?) {
         if animated {
             self._transition.subtype = subtype
             self.view.animator().addSubview(self._activeView!)

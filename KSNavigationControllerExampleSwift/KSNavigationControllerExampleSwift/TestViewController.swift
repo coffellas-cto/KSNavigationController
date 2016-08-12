@@ -14,9 +14,11 @@ class TestViewController: NSViewController, KSNavigationControllerCompatible {
     @IBOutlet weak var textField: NSTextField!
     
     @IBAction func pushAction(sender: AnyObject) {
+        self.navigationController?.pushViewController(TestViewController(), animated: true)
     }
 
     @IBAction func popAction(sender: AnyObject) {
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
     override func viewDidLoad() {
