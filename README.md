@@ -16,9 +16,9 @@ ObjC version: [KSNavigationController/ObjectiveC](https://github.com/coffellas-c
 ```swift
 // Swift
 let vc1 = TestViewController()
-let navigationController = KSNavigationController(rootViewController: vc1)
-navigationController?.view.frame = NSMakeRect(0.0, 0.0, 480.0, 272.0) // Or use constraints if appropriate
-self.window.contentViewController = navigationController
+let navVC = KSNavigationController(rootViewController: vc1)
+navVC?.view.frame = NSMakeRect(0.0, 0.0, 480.0, 272.0) // Or use constraints if appropriate
+self.window.contentViewController = navVC
 self.window.orderFrontRegardless()
 ```
 
