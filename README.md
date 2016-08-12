@@ -79,3 +79,8 @@ You must synthesize `navigationController` property explicitly in your subclass 
 ```
 
 See example projects for more understanding.
+
+## License
+Published under MIT license.
+
+Copyright (c) 2016 A. Gordiyenko.
