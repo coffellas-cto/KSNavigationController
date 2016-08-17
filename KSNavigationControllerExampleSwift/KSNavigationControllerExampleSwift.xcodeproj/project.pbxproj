@@ -24,6 +24,7 @@
 		FAA58FD71D53BFD3000CD0D9 /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		FAA58FD81D53BFD3000CD0D9 /* TestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
 		FAA58FDE1D53C821000CD0D9 /* KSNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KSNavigationController.swift; path = ../../KSNavigationController/Swift/KSNavigationController.swift; sourceTree = "<group>"; };
+		FAB66E3E1D64EE7E001AD920 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/MainMenu.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +152,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				FAA58FCF1D53BF93000CD0D9 /* Base */,
+				FAB66E3E1D64EE7E001AD920 /* ar */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
@@ -283,6 +285,7 @@
 				FAA58FD61D53BF93000CD0D9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

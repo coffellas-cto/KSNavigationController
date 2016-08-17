@@ -216,7 +216,7 @@ class KSNavigationController: NSViewController {
         }
         
         self._activeView = viewController.view
-        self.addActiveViewAnimated(animated, subtype: kCATransitionFromRight)
+        self.addActiveViewAnimated(animated, subtype: NSApp.userInterfaceLayoutDirection == .LeftToRight ? kCATransitionFromRight : kCATransitionFromLeft)
     }
     
     /**
@@ -236,7 +236,7 @@ class KSNavigationController: NSViewController {
             self._activeView = self.rootViewController.view
         }
         
-        self.addActiveViewAnimated(animated, subtype: kCATransitionFromLeft)
+        self.addActiveViewAnimated(animated, subtype: NSApp.userInterfaceLayoutDirection == .LeftToRight ? kCATransitionFromLeft : kCATransitionFromRight)
         return retVal
     }
     

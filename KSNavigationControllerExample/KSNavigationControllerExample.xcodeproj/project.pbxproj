@@ -19,6 +19,7 @@
 /* Begin PBXFileReference section */
 		FAA58FE01D53C844000CD0D9 /* KSNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KSNavigationController.h; path = ObjectiveC/KSNavigationController.h; sourceTree = "<group>"; };
 		FAA58FE11D53C844000CD0D9 /* KSNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KSNavigationController.m; path = ObjectiveC/KSNavigationController.m; sourceTree = "<group>"; };
+		FAB66E3D1D64EDB4001AD920 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		FAC0F4071D510385004E05F4 /* KSNavigationControllerExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KSNavigationControllerExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAC0F40A1D510385004E05F4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FAC0F40B1D510385004E05F4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -177,6 +178,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				FAC0F4271D5104BD004E05F4 /* Base */,
+				FAB66E3D1D64EDB4001AD920 /* ar */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";

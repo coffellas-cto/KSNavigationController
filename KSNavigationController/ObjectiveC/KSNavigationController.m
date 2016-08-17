@@ -186,7 +186,7 @@
     [_stack push:viewController];
     viewController.navigationController = self;
     _activeView = viewController.view;
-    [self addActiveViewAnimated:animated subtype:kCATransitionFromRight];
+    [self addActiveViewAnimated:animated subtype:[NSApp userInterfaceLayoutDirection] == NSUserInterfaceLayoutDirectionLeftToRight ? kCATransitionFromRight : kCATransitionFromLeft];
 }
 
 - (NSViewController<KSNavigationControllerCompatible> *)popViewControllerAnimated:(BOOL)animated {
@@ -201,7 +201,7 @@
         _activeView = _rootViewController.view;
     }
     
-    [self addActiveViewAnimated:animated subtype:kCATransitionFromLeft];
+    [self addActiveViewAnimated:animated subtype:[NSApp userInterfaceLayoutDirection] == NSUserInterfaceLayoutDirectionLeftToRight ? kCATransitionFromLeft : kCATransitionFromRight];
     return retVal;
 }
 
