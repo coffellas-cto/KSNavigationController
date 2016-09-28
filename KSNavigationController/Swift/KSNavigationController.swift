@@ -41,8 +41,8 @@ class _KSStackItem<T> : NSObject {
 }
 
 class _KSStack<T>: NSObject {
-    private var _head: _KSStackItem<T>?
-    private var _count: UInt = 0
+    fileprivate var _head: _KSStackItem<T>?
+    fileprivate var _count: UInt = 0
     var headValue: T? {
         get {
             return self._head?.value
@@ -54,7 +54,7 @@ class _KSStack<T>: NSObject {
         }
     }
     
-    func push(object: T) -> Void {
+    func push(_ object: T) -> Void {
         let item = _KSStackItem(object)
         item.next = self._head
         self._head = item
@@ -63,7 +63,7 @@ class _KSStack<T>: NSObject {
     
     func pop() -> T? {
         guard self._head != nil else {
-            NSException(name: NSInternalInconsistencyException, reason: "Popped an empty stack", userInfo: nil).raise()
+            NSException(name: NSExceptionName.internalInconsistencyException, reason: "Popped an empty stack", userInfo: nil).raise()
             return nil
         }
         
@@ -73,7 +73,7 @@ class _KSStack<T>: NSObject {
         return retVal
     }
     
-    func iterate(block: (T) -> (Void)) -> Void {
+    func iterate(_ block: (T) -> (Void)) -> Void {
         var item = self._head
         while true {
             if let item = item {
@@ -112,10 +112,17 @@ protocol KSNavigationControllerCompatible {
  Navigation bar is not implemented. All methods must be called from main thread.
  */
 class KSNavigationController: NSViewController {
+
+    // Lazy property added by the Swift3 migration tool to ensure that this code is run only once 
+    private lazy var __once: () = {
+            self._activeView = self.rootViewController.view
+            self.addActiveViewAnimated(false, subtype: nil)
+        }()
+    
     // MARK: Properties
     
     /** The root view controller on the bottom of the stack. */
-    private(set) var rootViewController: NSViewController
+    fileprivate(set) var rootViewController: NSViewController
     
     /** The current view controller stack. */
     var viewControllers: [NSViewController] {
@@ -148,10 +155,10 @@ class KSNavigationController: NSViewController {
         }
     }
 
-    private var _activeView: NSView?
-    private var _addRootViewOnceToken: dispatch_once_t = 0
-    private var _stack: _KSStack<NSViewController> = _KSStack<NSViewController>()
-    private var _transition: CATransition {
+    fileprivate var _activeView: NSView?
+    fileprivate var _addRootViewOnceToken: Int = 0
+    fileprivate var _stack: _KSStack<NSViewController> = _KSStack<NSViewController>()
+    fileprivate var _transition: CATransition {
         get {
             let transition = CATransition()
             transition.type = kCATransitionPush
@@ -174,7 +181,7 @@ class KSNavigationController: NSViewController {
         if var rootViewController = rootViewController as? KSNavigationControllerCompatible {
             rootViewController.navigationController = self
         } else {
-            NSException(name: NSInternalInconsistencyException, reason: "`rootViewController` doesn't conform to `KSNavigationControllerCompatible`", userInfo: nil).raise()
+            NSException(name: NSExceptionName.internalInconsistencyException, reason: "`rootViewController` doesn't conform to `KSNavigationControllerCompatible`", userInfo: nil).raise()
             return nil
         }
     }
@@ -191,10 +198,7 @@ class KSNavigationController: NSViewController {
     
     override func viewWillAppear() {
         super.viewWillAppear()
-        dispatch_once(&self._addRootViewOnceToken) {
-            self._activeView = self.rootViewController.view
-            self.addActiveViewAnimated(false, subtype: nil)
-        }
+        _ = self.__once
     }
     
     override func loadView() {
@@ -208,7 +212,7 @@ class KSNavigationController: NSViewController {
      - parameter viewController: The view controller to push onto the stack.
      - parameter animated: Set this value to YES to animate the transition, NO otherwise.
      */
-    func pushViewController(viewController: NSViewController, animated: Bool) {
+    func pushViewController(_ viewController: NSViewController, animated: Bool) {
         self._activeView?.removeFromSuperview()
         self._stack.push(viewController)
         if var viewControllerWithNav = viewController as? KSNavigationControllerCompatible {
@@ -216,7 +220,7 @@ class KSNavigationController: NSViewController {
         }
         
         self._activeView = viewController.view
-        self.addActiveViewAnimated(animated, subtype: NSApp.userInterfaceLayoutDirection == .LeftToRight ? kCATransitionFromRight : kCATransitionFromLeft)
+        self.addActiveViewAnimated(animated, subtype: NSApp.userInterfaceLayoutDirection == .leftToRight ? kCATransitionFromRight : kCATransitionFromLeft)
     }
     
     /**
@@ -224,7 +228,7 @@ class KSNavigationController: NSViewController {
      - parameter animated: Set this value to YES to animate the transition, NO otherwise.
      - returns: The popped view controller.
      */
-    func popViewControllerAnimated(animated: Bool) -> NSViewController? {
+    func popViewControllerAnimated(_ animated: Bool) -> NSViewController? {
         if self._stack.count == 0 {
             return nil
         }
@@ -236,7 +240,7 @@ class KSNavigationController: NSViewController {
             self._activeView = self.rootViewController.view
         }
         
-        self.addActiveViewAnimated(animated, subtype: NSApp.userInterfaceLayoutDirection == .LeftToRight ? kCATransitionFromLeft : kCATransitionFromRight)
+        self.addActiveViewAnimated(animated, subtype: NSApp.userInterfaceLayoutDirection == .leftToRight ? kCATransitionFromLeft : kCATransitionFromRight)
         return retVal
     }
     
@@ -245,7 +249,7 @@ class KSNavigationController: NSViewController {
      - parameter animated: Set this value to YES to animate the transitions if any, NO otherwise.
      - returns: The popped view controllers.
      */
-    func popToRootViewControllerAnimated(animated: Bool) -> [NSViewController]? {
+    func popToRootViewControllerAnimated(_ animated: Bool) -> [NSViewController]? {
         if self._stack.count == 0 {
             return nil;
         }
@@ -262,7 +266,7 @@ class KSNavigationController: NSViewController {
     
     // MARK: Private Methods
     
-    private func addActiveViewAnimated(animated: Bool, subtype: String?) {
+    fileprivate func addActiveViewAnimated(_ animated: Bool, subtype: String?) {
         if animated {
             self._transition.subtype = subtype
             self.view.animator().addSubview(self._activeView!)
