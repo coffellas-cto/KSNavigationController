@@ -130,10 +130,7 @@
     [_activeView removeFromSuperview];
     NSViewController<KSNavigationControllerCompatible> *retVal = _stack.top();
     _stack.pop();
-    _activeView = _stack.size() > 0 ? _stack.top().view : nil;
-    if (!_activeView) {
-        _activeView = _rootViewController.view;
-    }
+    _activeView = _stack.size() > 0 ? _stack.top().view : _rootViewController.view;
     
     [self addActiveViewAnimated:animated subtype:[NSApp userInterfaceLayoutDirection] == NSUserInterfaceLayoutDirectionLeftToRight ? kCATransitionFromLeft : kCATransitionFromRight];
     return retVal;
