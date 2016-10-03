@@ -18,7 +18,7 @@ class TestViewController: NSViewController, KSNavigationControllerCompatible {
     }
 
     @IBAction func popAction(_ sender: AnyObject) {
-        self.navigationController?.popViewControllerAnimated(true)
+        _ = self.navigationController?.popViewControllerAnimated(true)
     }
     
     override func viewDidLoad() {
