@@ -1,4 +1,4 @@
-# KSNavigationController v0.2
+# KSNavigationController v0.3
 UINavigationController for macOS (Swift, Objective-C)
 
 ![ksnavigationcontrollerdemo](https://cloud.githubusercontent.com/assets/3193877/17337372/04002c08-58eb-11e6-9c1f-2cabdea4dd66.gif)
