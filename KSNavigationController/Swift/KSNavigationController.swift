@@ -112,9 +112,8 @@ protocol KSNavigationControllerCompatible {
  Navigation bar is not implemented. All methods must be called from main thread.
  */
 class KSNavigationController: NSViewController {
-
-    // Lazy property added by the Swift3 migration tool to ensure that this code is run only once 
-    private lazy var __once: () = {
+    
+    private lazy var __addRootViewOnce: () = {
             self._activeView = self.rootViewController.view
             self.addActiveViewAnimated(false, subtype: nil)
         }()
@@ -198,7 +197,7 @@ class KSNavigationController: NSViewController {
     
     override func viewWillAppear() {
         super.viewWillAppear()
-        _ = self.__once
+        _ = self.__addRootViewOnce
     }
     
     override func loadView() {
