@@ -1,4 +1,4 @@
-# KSNavigationController
+# KSNavigationController v0.2
 UINavigationController for macOS (Swift, Objective-C)
 
 ![ksnavigationcontrollerdemo](https://cloud.githubusercontent.com/assets/3193877/17337372/04002c08-58eb-11e6-9c1f-2cabdea4dd66.gif)
@@ -7,9 +7,11 @@ Looking for macOS (Mac OS X) analog of UIKit's `UINavigationController` from iOS
 
 **Attention**: Navigation bar is not implemented. All methods must be called from main thread.
 
-Swift version (2.2): [KSNavigationController/Swift](https://github.com/coffellas-cto/KSNavigationController/tree/master/KSNavigationController/Swift)
+Swift version (3.0): [KSNavigationController/Swift](https://github.com/coffellas-cto/KSNavigationController/tree/master/KSNavigationController/Swift)
 
 ObjC version: [KSNavigationController/ObjectiveC](https://github.com/coffellas-cto/KSNavigationController/tree/master/KSNavigationController/ObjectiveC)
+
+For Swift 2.2 support see [version 0.1](https://github.com/coffellas-cto/KSNavigationController/releases/tag/v0.1).
 
 ## Usage
 ### Creating a navigation controller
